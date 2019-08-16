@@ -28,8 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.groupBox_COMM.SuspendLayout();
+			this.panel_COMM.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox_COMM)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// pictureBox_COMM
+			// 
+			this.pictureBox_COMM.Image = global::Harry.LabTools.LabComm.Properties.Resources.lost;
+			// 
+			// CCommSerialControl
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Name = "CCommSerialControl";
+			this.groupBox_COMM.ResumeLayout(false);
+			this.panel_COMM.ResumeLayout(false);
+			this.panel_COMM.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox_COMM)).EndInit();
+			this.ResumeLayout(false);
+
         }
 
         #endregion

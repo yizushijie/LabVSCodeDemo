@@ -19,7 +19,7 @@ namespace Harry.LabTools.LabGenForm
         /// </summary>
         //由于本窗体为WS_CHILD，所以不会收到在窗体以外点击鼠标的消息
         //该消息筛选器的作用就是让本窗体获知鼠标点击情况，进而根据鼠标是否在本窗体以外的区域点击，做出相应处理
-        private MouseMessageHandler defaultMousMessageFilter=null;
+        private MouseMessageFilter defaultMousMessageFilter=null;
 
         /// <summary>
         /// 指示本窗体是否已ShowDialog过
@@ -146,9 +146,7 @@ namespace Harry.LabTools.LabGenForm
         public FloatPopupBaseForm()
         {
             InitializeComponent();
-            //初始化消息筛选器。添加和移除在显示/隐藏时负责
-            this.defaultMousMessageFilter = new MouseMessageHandler(this);
-
+            
             //初始化基类属性
             this.InitBaseProperties();
 
@@ -157,15 +155,19 @@ namespace Harry.LabTools.LabGenForm
             this.defaultBorder3DStyle = System.Windows.Forms.Border3DStyle.RaisedInner;
             this.defaultBorderSingleStyle= ButtonBorderStyle.Solid;
             this.defaultBorderColor= Color.DarkGray;
-        }
-        #endregion
 
-        #region 析构函数
+			//初始化消息筛选器。添加和移除在显示/隐藏时负责
+			this.defaultMousMessageFilter = new MouseMessageFilter(this);
+			
+		}
+		#endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        ~FloatPopupBaseForm()
+		#region 析构函数
+
+		/// <summary>
+		/// 
+		/// </summary>
+		~FloatPopupBaseForm()
         {
             if (this.Visible)
             {
@@ -474,7 +476,6 @@ namespace Harry.LabTools.LabGenForm
             //让鼠标点击客户区时达到与点击标题栏一样的效果，以此实现客户区拖动
             NativeMethods.ReleaseCapture();
             NativeMethods.SendMessage(this.Handle, 0xA1/*WM_NCLBUTTONDOWN*/, (IntPtr)2/*CAPTION*/, IntPtr.Zero);
-
             base.OnMouseDown(e);
         }
         #endregion
@@ -900,7 +901,7 @@ namespace Harry.LabTools.LabGenForm
         /// <summary>
         /// 程序鼠标消息筛选器
         /// </summary>
-        private class MouseMessageHandler : IMessageFilter
+        private class MouseMessageFilter : IMessageFilter
         {
             #region 变量定义
             /// <summary>
@@ -920,7 +921,7 @@ namespace Harry.LabTools.LabGenForm
             /// 
             /// </summary>
             /// <param name="foatPopupBaseForm"></param>
-            public MouseMessageHandler(FloatPopupBaseForm foatPopupBaseForm)
+            public MouseMessageFilter(FloatPopupBaseForm foatPopupBaseForm)
             {
                 this.defaultFloatPopupForm = foatPopupBaseForm;
             }
@@ -936,18 +937,21 @@ namespace Harry.LabTools.LabGenForm
             /// <returns></returns>
             public bool PreFilterMessage(ref Message m)
             {
+				bool _return=false;
                 //如果在本窗体以外点击鼠标，隐藏本窗体
                 //若想在点击标题栏、滚动条等非客户区也要让本窗体消失，取消0xA1的注释即可
                 //本例是根据坐标判断，亦可以改为根据句柄，但要考虑子孙控件
                 //之所以用API而不用Form.DesktopBounds是因为后者不可靠
-                if ((m.Msg == 0x201/*|| m.Msg==0xA1*/)
-                    && defaultFloatPopupForm.Visible 
-                    && !NativeMethods.GetWindowRect(defaultFloatPopupForm.Handle).Contains(MousePosition))
+				//WM_MOUSEMOVE = 0X0200;
+                if ((m.Msg == 0x201/*|| (m.Msg==0xA1)*/)
+                    && this.defaultFloatPopupForm.Visible 
+                    && !NativeMethods.GetWindowRect(this.defaultFloatPopupForm.Handle).Contains(MousePosition))
                 {
                    this.defaultFloatPopupForm.Hide();//之所以不Close是考虑应该由调用者负责销毁
+					_return=true;
                 }
 
-                return false;
+                return _return;
             }
             #endregion
 

@@ -58,6 +58,11 @@ namespace Harry.LabTools.LabComm
         /// </summary>
         private bool defaultConnected = false;
 
+		/// <summary>
+		/// 设备是否发生变化,TRUE---发生变化，FALSE---未变化
+		/// </summary>
+		private bool defaultChanged = false;
+
         
         #endregion
 
@@ -196,9 +201,9 @@ namespace Harry.LabTools.LabComm
 		}
 
 		/// <summary>
-		/// 消息信息
+		/// 消息Log信息
 		/// </summary>
-		public override string Message
+		public override string LogMessage
 		{
 			get
 			{
@@ -239,14 +244,32 @@ namespace Harry.LabTools.LabComm
                 return this.defaultConnected;
             }
         }
-        #endregion
 
-        #region 串口属性
+		/// <summary>
+		/// 
+		/// </summary>
+		public override bool IsChanged
+		{
+			get
+			{
+				return this.defaultChanged;
+			}
+			set
+			{
+				this.defaultChanged = value;
+			}
+		}
 
-        /// <summary>
-        /// 串口配置信息
-        /// </summary>
-        public override CCommSerialParam mSerialParam
+
+
+		#endregion
+
+		#region 串口属性
+
+		/// <summary>
+		/// 串口配置信息
+		/// </summary>
+		public override CCommSerialParam mSerialParam
 		{
 			get
 			{

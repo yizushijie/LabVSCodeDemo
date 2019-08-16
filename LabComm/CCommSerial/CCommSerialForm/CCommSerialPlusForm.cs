@@ -24,13 +24,25 @@ namespace Harry.LabTools.LabComm
 		{
 			get
 			{
-				return new CCommSerialParam(this.cCommSerialPort.mCCommName,this.cCommSerialPort.mBaudRate,this.cCommSerialPort.mStopBits,this.cCommSerialPort.mDataBits,this.cCommSerialPort.mParity);
+				return new CCommSerialParam(this.cCommSerial.mCCommName,this.cCommSerial.mBaudRate,this.cCommSerial.mStopBits,this.cCommSerial.mDataBits,this.cCommSerial.mParity);
 			}
 		}
-        
-        #endregion
 
-        #region 构造函数
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public override bool mCCommChanged
+		{
+			get
+			{
+				return this.cCommSerial.mCCOMM.IsChanged;
+			}
+		}
+
+		#endregion
+
+		#region 构造函数
 
 		/// <summary>
 		/// 
@@ -66,7 +78,7 @@ namespace Harry.LabTools.LabComm
 
 			if ((text!="")&&(text!=string.Empty))
 			{
-				this.cCommSerialPort.mButton.Text=text;
+				this.cCommSerial.mButton.Text=text;
 			}
 
 			//---判断是否限定最小尺寸
@@ -90,7 +102,7 @@ namespace Harry.LabTools.LabComm
 
 			if ((text!="")&&(text!=string.Empty))
 			{
-				this.cCommSerialPort.mButton.Text=text;
+				this.cCommSerial.mButton.Text=text;
 			}
 
 			//---判断是否限定最小尺寸
@@ -121,9 +133,9 @@ namespace Harry.LabTools.LabComm
         public override void FreeResource()
         {
             base.FreeResource();
-            if (this.cCommSerialPort!=null)
+            if (this.cCommSerial!=null)
             {
-                GC.SuppressFinalize(this.cCommSerialPort);
+                GC.SuppressFinalize(this.cCommSerial);
             }
             GC.SuppressFinalize(this);
         }
@@ -149,11 +161,11 @@ namespace Harry.LabTools.LabComm
 		{
 			if (cComm!=null)
 			{
-				this.cCommSerialPort.RemoveComboBoxMouseDownClick();
-				this.cCommSerialPort.RemoveButtonClick();
+				this.cCommSerial.RemoveComboBoxMouseDownClick();
+				this.cCommSerial.RemoveButtonClick();
 
 				//---加载按钮事件
-				this.cCommSerialPort.mButton.Click+=new EventHandler(this.ShowParamDialog_Click);
+				this.cCommSerial.mButton.Click+=new EventHandler(this.ShowParamDialog_Click);
 			}
 			else
 			{
@@ -170,20 +182,23 @@ namespace Harry.LabTools.LabComm
 		{
 			if (cComm!=null)
 			{
-				this.cCommSerialPort.RemoveComboBoxMouseDownClick();
-				this.cCommSerialPort.RemoveButtonClick();
-				this.cCommSerialPort.RefreshCOMM(cbb);
+				this.cCommSerial.RemoveComboBoxMouseDownClick();
+				this.cCommSerial.RemoveButtonClick();
+				this.cCommSerial.RefreshCOMM(cbb);
+
+				//---传递端口类型
+				this.cCommSerial.mCCOMM=cComm;
 
 				//---加载按钮事件
-				this.cCommSerialPort.mButton.Click+=new EventHandler(this.ShowParamDialog_Click);		
+				this.cCommSerial.mButton.Click+=new EventHandler(this.ShowParamDialog_Click);		
 				//---波特率
-				this.cCommSerialPort.AnalyseBaudRate(cComm.mSerialParam.mBaudRate);
+				this.cCommSerial.AnalyseBaudRate(cComm.mSerialParam.mBaudRate);
 				//---数据位
-				this.cCommSerialPort.AnalyseDataBits(cComm.mSerialParam.mDataBits);
+				this.cCommSerial.AnalyseDataBits(cComm.mSerialParam.mDataBits);
 				//---停止位
-				this.cCommSerialPort.AnalyseStopBits(cComm.mSerialParam.mStopBits);
+				this.cCommSerial.AnalyseStopBits(cComm.mSerialParam.mStopBits);
 				//---校验位
-				this.cCommSerialPort.AnalyseParity(cComm.mSerialParam.mParity);
+				this.cCommSerial.AnalyseParity(cComm.mSerialParam.mParity);
 			}
 			else
 			{

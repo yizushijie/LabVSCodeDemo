@@ -25,36 +25,129 @@ namespace Harry.LabTools.LabComm
 	{
 		#region 变量定义
 
-		public string mName = "COM1";
+		/// <summary>
+		/// 端口名称
+		/// </summary>
+		private string defaultName = "COM1";
 
 		/// <summary>
 		/// 通讯波特率
 		/// </summary>
-		public string mBaudRate = "115200";
+		private string defaultBaudRate = "115200";
 
 		/// <summary>
 		/// 校验位
 		/// </summary>
-		public string mParity = "NONE";
+		private string defaultParity = "NONE";
 
 		/// <summary>
 		/// 数据位
 		/// </summary>
-		public string  mDataBits = "8";
+		private string defaultDataBits = "8";
 
 		/// <summary>
 		/// 停止位
 		/// </summary>
-		public string mStopBits = "1";
+		private string defaultStopBits = "1";
 
 		/// <summary>
 		/// 设备的ID
 		/// </summary>
-		public int mAddrID = -1;
+		private int defaultAddrID = -1;
 		
 		#endregion
 
 		#region 属性定义
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual string mName
+		{
+			get
+			{
+				return this.defaultName;
+			}
+			set
+			{
+				this.defaultName = value;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual string mBaudRate
+		{
+			get
+			{
+				return this.defaultBaudRate;
+			}
+			set
+			{
+				this.defaultBaudRate = value;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual string mParity
+		{
+			get
+			{
+				return this.defaultParity;
+			}
+			set
+			{
+				this.defaultParity = value;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual string mDataBits
+		{
+			get
+			{
+				return this.defaultDataBits;
+			}
+			set
+			{
+				this.defaultDataBits = value;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual string mStopBits
+		{
+			get
+			{
+				return this.defaultStopBits;
+			}
+			set
+			{
+				this.defaultStopBits = value;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual int mAddrID
+		{
+			get
+			{
+				return this.defaultAddrID;
+			}
+			set
+			{
+				this.defaultAddrID = value;
+			}
+		}
 
 		#endregion
 
@@ -78,11 +171,37 @@ namespace Harry.LabTools.LabComm
 		/// <param name="parity"></param>
 		public CCommSerialParam(string name,string baudRate,string stopBits,string dataBits,string parity)
 		{
-			this.mName=name;
-			this.mBaudRate=baudRate;
-			this.mStopBits=stopBits;
-			this.mDataBits=dataBits;
-			this.mParity=parity;
+			this.defaultName=name;
+			this.defaultBaudRate=baudRate;
+			this.defaultStopBits=stopBits;
+			this.defaultDataBits=dataBits;
+			this.defaultParity=parity;
+		}
+
+		#endregion
+
+		#region 析构函数
+
+		/// <summary>
+		/// 
+		/// </summary>
+		~CCommSerialParam()
+		{
+			this.Dispose();
+		}
+
+		/// <summary>
+		/// 资源回收
+		/// </summary>
+		public virtual void Dispose()
+		{
+			this.defaultName = "COM1";
+			this.defaultBaudRate = "115200";
+			this.defaultStopBits = "1";
+			this.defaultDataBits = "8";
+			this.defaultParity = "NONE";
+
+			GC.SuppressFinalize(this);
 		}
 
 		#endregion
@@ -99,13 +218,13 @@ namespace Harry.LabTools.LabComm
 		/// <param name="parity"></param>
 		public void AnalyseParam(string name,string baudRate,string stopBits,string dataBits,string parity)
 		{
-			this.mName=name;
-			this.mBaudRate=baudRate;
-			this.mStopBits=stopBits;
-			this.mDataBits=dataBits;
-			this.mParity=parity;
+			this.defaultName=name;
+			this.defaultBaudRate=baudRate;
+			this.defaultStopBits=stopBits;
+			this.defaultDataBits=dataBits;
+			this.defaultParity = parity;
 		}
-
+		
 		#endregion
 
 		#region 私有函数
@@ -120,26 +239,105 @@ namespace Harry.LabTools.LabComm
 	{
 		#region 变量定义
 
-		public int mVID = -1;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int defaultVID = -1;
 
-		public int mPID = -1;
+		/// <summary>
+		/// 
+		/// </summary>
+		public int defaultPID = -1;
 
 		#endregion
 
 		#region 属性定义
 
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual int mVID
+		{
+			get
+			{
+				return this.defaultVID;
+			}
+			set
+			{
+				this.defaultVID = value;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual int mPID
+		{
+			get
+			{
+				return this.defaultPID;
+			}
+			set
+			{
+				this.defaultPID = value;
+			}
+		}
+
 		#endregion
 
 		#region 构造函数
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public CCommUSBParam()
 		{
 
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="vid"></param>
+		/// <param name="pid"></param>
+		public CCommUSBParam (int vid, int pid)
+		{
+			this.defaultVID = vid;
+			this.defaultPID = pid;
+		}
+
+		#endregion
+
+		#region 析构函数
+
+		/// <summary>
+		/// 
+		/// </summary>
+		~CCommUSBParam()
+		{
+			this.Dispose();
+		}
+
+		/// <summary>
+		/// 资源回收
+		/// </summary>
+		public virtual void Dispose()
+		{
+			this.defaultVID =-1;
+			this.defaultPID =-1;
+
+			GC.SuppressFinalize(this);
+		}
+
 		#endregion
 
 		#region 公有函数
+
+		public void AnalyseParam(int vid,int pid)
+		{
+			this.mVID = vid;
+			this.mPID = pid;
+		}
 
 		#endregion
 
@@ -219,7 +417,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 通讯过程中消息信息
 		/// </summary>
-		string Message
+		string LogMessage
 		{
 			get;
 		}
@@ -248,6 +446,15 @@ namespace Harry.LabTools.LabComm
         {
             get;
         }
+
+		/// <summary>
+		/// 设备是否发生变化
+		/// </summary>
+		bool IsChanged
+		{
+			get;
+			set;
+		}
 
 		#endregion
 

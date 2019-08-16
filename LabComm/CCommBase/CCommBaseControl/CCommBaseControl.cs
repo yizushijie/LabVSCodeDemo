@@ -94,7 +94,7 @@ namespace Harry.LabTools.LabComm
 		}
 
 		/// <summary>
-		/// 
+		/// 通讯端口名称
 		/// </summary>
 		public virtual string mCCommName
 		{
@@ -103,6 +103,32 @@ namespace Harry.LabTools.LabComm
 				return this.comboBox_COMM.Text;
 			}
 		}
+
+		/// <summary>
+		/// 消息显示的控件
+		/// </summary>
+		public virtual RichTextBox mCCommRichTextBox
+		{
+			get
+			{
+				if (this.defaultCCOMM!=null)
+				{
+					return this.defaultCCOMM.mCCommRichTextBox;
+				}
+				else
+				{
+					return  null;
+				}
+			}
+			set
+			{
+				if (this.defaultCCOMM!=null)
+				{
+					this.defaultCCOMM.mCCommRichTextBox=value;
+				}
+			}
+		}
+
         #endregion
 
         #region 构造函数
@@ -174,7 +200,7 @@ namespace Harry.LabTools.LabComm
             {
                 if (this.defaultCCOMM!=null)
                 {
-                    if(this.defaultCCOMM.OpenDevice(this.comboBox_COMM.Text, this.defaultCCOMM.RichTextBoxComm)==0)
+                    if(this.defaultCCOMM.OpenDevice(this.comboBox_COMM.Text, this.defaultCCOMM.mCCommRichTextBox)==0)
                     {
                         this.button_COMM.Text = "关闭设备";
                         this.pictureBox_COMM.Image= Properties.Resources.open;
@@ -193,7 +219,7 @@ namespace Harry.LabTools.LabComm
             {
                 if (this.defaultCCOMM.IsAttached())
                 {
-                   if( this.defaultCCOMM.CloseDevice()==0)
+                   if( this.defaultCCOMM.CloseDevice(this.defaultCCOMM.mCCommRichTextBox)==0)
                    {
                         this.button_COMM.Text = "打开设备";
                         this.pictureBox_COMM.Image = Properties.Resources.lost;
@@ -233,8 +259,9 @@ namespace Harry.LabTools.LabComm
                                  {
                                      if ((this.comboBox_COMM.Text == "") || (this.comboBox_COMM.Text == string.Empty) || ((this.defaultCCOMM.Name != this.comboBox_COMM.Text)))
                                      {
-                                         if (this.pictureBox_COMM.Image.Flags == Properties.Resources.open.Flags)
-                                         {
+										 //if (this.pictureBox_COMM.Image.Flags == Properties.Resources.open.Flags)
+										 if (LabGenFunc.CGenFuncBitMap.GenFuncCompareBitMap((Bitmap)this.pictureBox_COMM.Image, Properties.Resources.open) == true)
+										 {
                                              //---注销资源
                                              this.defaultCCOMM.Dispose();
                                              this.button_COMM.Text = "打开设备";
@@ -247,8 +274,9 @@ namespace Harry.LabTools.LabComm
                 {
                     if ((this.comboBox_COMM.Text == "") || (this.comboBox_COMM.Text == string.Empty)||((this.defaultCCOMM.Name != this.comboBox_COMM.Text)))
                     {
-                        if (this.pictureBox_COMM.Image == Properties.Resources.open)
-                        {
+						//if (this.pictureBox_COMM.Image.Flags == Properties.Resources.open.Flags)
+						if (LabGenFunc.CGenFuncBitMap.GenFuncCompareBitMap((Bitmap)this.pictureBox_COMM.Image, Properties.Resources.open) == true)
+						{
                             //---注销资源
                             this.defaultCCOMM.Dispose();
                             this.button_COMM.Text = "打开设备";
@@ -316,6 +344,11 @@ namespace Harry.LabTools.LabComm
 
 		#region 私有函数
 
+		/// <summary>
+		/// 启动初始化
+		/// </summary>
+		/// <param name="ccomm"></param>
+		/// <param name="msg"></param>
 		private void StartupInit(CCommBase ccomm=null, RichTextBox msg = null)
         {
             //---button 点击事件
@@ -358,37 +391,32 @@ namespace Harry.LabTools.LabComm
 				//---判断对象是否可用
 				if (p!=null)
 				{
-					if (p.ShowDialog(this.comboBox_COMM, 0, this.comboBox_COMM.Height) != System.Windows.Forms.DialogResult.OK)
+					if (p.ShowDialog(this.comboBox_COMM, 0, this.comboBox_COMM.Height) == System.Windows.Forms.DialogResult.OK)
 					{
-
+						this.defaultCCOMM.AnalyseParam(p.mCCommSrialParam, p.mCCommUSBParam);
+						//---检查端口是否发生变化
+						if (p.mCCommChanged == true)
+						{
+							if (this.defaultCCOMM != null)
+							{
+								//---刷新设备
+								this.defaultCCOMM.RefreshDevice(this.comboBox_COMM, this.defaultCCOMM.mCCommRichTextBox);
+							}
+						}
+						if (this.defaultCCOMM.mCCommRichTextBox != null)
+						{
+							CRichTextBoxPlus.AppendTextInfoTopWithDataTime(this.defaultCCOMM.mCCommRichTextBox, "通信端口参数配置成功。\r\n", Color.Black, false);
+						}
 					}
 					else
 					{
-						this.defaultCCOMM.AnalyseParam(p.mCCommSrialParam,p.mCCommUSBParam);
+						if (this.defaultCCOMM.mCCommRichTextBox != null)
+						{
+							CRichTextBoxPlus.AppendTextInfoTopWithDataTime(this.defaultCCOMM.mCCommRichTextBox, "通信端口参数配置失败。\r\n", Color.Red, false);
+						}
 					}
-					//COMMSerialParamForm p = new COMMSerialParamForm(this.m_COMMComboBox, this.m_COMMParam);
-
-					//if (p.ShowDialog(this.m_COMMComboBox, 0, this.m_COMMComboBox.Height) != System.Windows.Forms.DialogResult.OK)
-					//{
-					//	//---消息显示
-					//	if (this.m_COMMRichTextBox != null)
-					//	{
-					//		RichTextBoxPlus.AppendTextInfoTopWithDataTime(this.m_COMMRichTextBox, "通信端口参数配置失败。\r\n", Color.Red, false);
-					//	}
-					//	p.CloseForm();
-					//}
-					//else
-					//{
-					//	//---同步端口
-					//	this.m_COMMParam = p.m_COMMParam;
-					//	//---消息显示
-					//	if (this.m_COMMRichTextBox != null)
-					//	{
-					//		RichTextBoxPlus.AppendTextInfoTopWithDataTime(this.m_COMMRichTextBox, "通信端口参数配置成功。\r\n", Color.Black, false);
-					//	}
-
-					//	p.CloseForm();
-					//}
+					//---释放资源
+					p.FreeResource();
 				}
 
 			}
@@ -446,12 +474,12 @@ namespace Harry.LabTools.LabComm
             switch (ptb.Name)
             {
                 case "pictureBox_COMM":
-                    if (this.button_COMM.Text == "打开设备")
+                    if ((this.button_COMM.Text == "打开设备")||(this.button_COMM.Text == "配置设备"))
                     {
                         if (this.defaultCCOMM != null)
                         {
                             //---刷新设备
-                            this.defaultCCOMM.RefreshDevice(this.comboBox_COMM,null);
+                            this.defaultCCOMM.RefreshDevice(this.comboBox_COMM,this.defaultCCOMM.mCCommRichTextBox);
                         }
                     }
                     break;
@@ -476,20 +504,23 @@ namespace Harry.LabTools.LabComm
 					//---判断鼠标按下的按键
 					if ((e.Button == MouseButtons.Right) && (this.defaultIsShowCommParam == true))
 					{
-						//---鼠标右键配置通信端口的参数
-						this.ConfigCOMMSerialPortParam();
-						//---判断是否端口发生了变化
-						if (((this.comboBox_COMM.Text != string.Empty) || this.comboBox_COMM.Text != "") && ((this.defaultCCOMM.Name != string.Empty) || (this.defaultCCOMM.Name != "")) && (this.defaultCCOMM.Name != this.comboBox_COMM.Text))
+						if (LabGenFunc.CGenFuncBitMap.GenFuncCompareBitMap((Bitmap)this.pictureBox_COMM.Image, Properties.Resources.open)!=true)
 						{
-							//---数据位
-							index = this.comboBox_COMM.Items.IndexOf(this.defaultCCOMM.Name);
-							if (index < 0)
+							//---鼠标右键配置通信端口的参数
+							this.ConfigCOMMSerialPortParam();
+							//---判断是否端口发生了变化
+							if (((this.comboBox_COMM.Text != string.Empty) || this.comboBox_COMM.Text != "") && ((this.defaultCCOMM.Name != string.Empty) || (this.defaultCCOMM.Name != "")) && (this.defaultCCOMM.Name != this.comboBox_COMM.Text))
 							{
-								this.comboBox_COMM.SelectedIndex = 0;
-							}
-							else
-							{
-								this.comboBox_COMM.SelectedIndex = index;
+								//---数据位
+								index = this.comboBox_COMM.Items.IndexOf(this.defaultCCOMM.Name);
+								if (index < 0)
+								{
+									this.comboBox_COMM.SelectedIndex = 0;
+								}
+								else
+								{
+									this.comboBox_COMM.SelectedIndex = index;
+								}
 							}
 						}
 					}
@@ -498,7 +529,7 @@ namespace Harry.LabTools.LabComm
 					break;
 			}
 		}
-		
+
 		#endregion
 	}
 }

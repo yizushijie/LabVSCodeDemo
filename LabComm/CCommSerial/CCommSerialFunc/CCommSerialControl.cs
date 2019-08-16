@@ -17,30 +17,30 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 
 		/// </summary>
-		public override RichTextBox RichTextBoxComm
+		public override RichTextBox mCCommRichTextBox
 		{
 			get
 			{
-				return base.RichTextBoxComm;
+				return base.mCCommRichTextBox;
 			}
 			set
 			{
-				base.RichTextBoxComm = value;
+				base.mCCommRichTextBox = value;
 			}
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public override ComboBox ComBoxComm
+		public override ComboBox mCCommComBox
 		{
 			get
 			{
-				return base.ComBoxComm;
+				return base.mCCommComBox;
 			}
 			set
 			{
-				base.ComBoxComm = value;
+				base.mCCommComBox = value;
 			}
 		}
 

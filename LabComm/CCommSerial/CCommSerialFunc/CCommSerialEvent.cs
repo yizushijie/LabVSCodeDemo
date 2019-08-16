@@ -57,11 +57,6 @@ namespace Harry.LabTools.LabComm
 
         #region 事件函数
 
-        /// <summary>
-        /// 事件执行的次数
-        /// </summary>
-        private int defaulWatcherEventCount = 0;
-
 		/// <summary>
 		/// 监控串口拔插事件
 		/// </summary>
@@ -69,29 +64,22 @@ namespace Harry.LabTools.LabComm
 		/// <param name="e"></param>
 		public override void EventWatcherCommHandler(Object sender, EventArrivedEventArgs e)
 		{
-            this.defaulWatcherEventCount++;
-            //---软件处理避免多次进入
-            if (this.defaulWatcherEventCount==2)
-            {
-                if ((e.NewEvent.ClassPath.ClassName == "__InstanceCreationEvent"))
-                {
-                    //---设备插入处理函数
-                    this.InsertDevice();
-                }
-                else if ((e.NewEvent.ClassPath.ClassName == "__InstanceDeletionEvent"))
-                {
-                    //---设备拔出处理函数
-                    this.RemoveDevice();
-					//---设备变化事件
-					if (this.EventCCommChange!=null)
-					{
-						this.EventCCommChange?.Invoke();
-					}
-                    
-                }
-                this.defaulWatcherEventCount = 0;
-            }
-			
+			//===备注：如果这个事件多次进入，请检查一下是否被多次注册；每次的初始化都会被注册一次
+			if ((e.NewEvent.ClassPath.ClassName == "__InstanceCreationEvent"))
+			{
+				//---设备插入处理函数
+				this.InsertDevice();
+			}
+			else if ((e.NewEvent.ClassPath.ClassName == "__InstanceDeletionEvent"))
+			{
+				//---设备拔出处理函数
+				this.RemoveDevice();
+				//---设备变化事件
+				if (this.EventCCommChange != null)
+				{
+					this.EventCCommChange?.Invoke();
+				}
+			}
 		}
 
 		/// <summary>

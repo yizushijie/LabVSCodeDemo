@@ -90,10 +90,10 @@ namespace Harry.LabTools.LabComm
 			}
 
 
-          	this.ComBoxComm = cbb;
-            this.RichTextBoxComm = msg;
+          	this.mCCommComBox = cbb;
+            this.mCCommRichTextBox = msg;
 
-            //---天剑端口监控函数
+            //---添加端口监控函数
             this.AddWatcherCommEvent();
             return _return;
 		}
@@ -131,23 +131,23 @@ namespace Harry.LabTools.LabComm
 				{
 					this.defaultSerialInfoMemu.Clear();
 				}
-				if (this.ComBoxComm != null)
+				if (this.mCCommComBox != null)
 				{
 					//---异步调用
-					if (this.ComBoxComm.InvokeRequired)
+					if (this.mCCommComBox.InvokeRequired)
 					{
-						this.ComBoxComm.BeginInvoke((EventHandler)
+						this.mCCommComBox.BeginInvoke((EventHandler)
 								 //cbb.Invoke((EventHandler)
 								 (delegate
 								 {
-									 this.ComBoxComm.Items.Clear();
-									 this.ComBoxComm.SelectedIndex = -1;
+									 this.mCCommComBox.Items.Clear();
+									 this.mCCommComBox.SelectedIndex = -1;
 								 }));
 					}
 					else
 					{
-						this.ComBoxComm.Items.Clear();
-						this.ComBoxComm.SelectedIndex = -1;
+						this.mCCommComBox.Items.Clear();
+						this.mCCommComBox.SelectedIndex = -1;
 					}
 				}
                 _return = 1;
@@ -178,20 +178,20 @@ namespace Harry.LabTools.LabComm
 				List<byte> addDevice = new List<byte>();
 
 				//---获取当前选择的端口
-				if (this.ComBoxComm != null)
+				if (this.mCCommComBox != null)
 				{
 					//---异步调用
-					if (this.ComBoxComm.InvokeRequired)
+					if (this.mCCommComBox.InvokeRequired)
 					{
-						this.ComBoxComm.Invoke((EventHandler)
+						this.mCCommComBox.Invoke((EventHandler)
 									 (delegate
 									 {
-										 portIndex = this.ComBoxComm.SelectedIndex;
+										 portIndex = this.mCCommComBox.SelectedIndex;
 									 }));
 					}
 					else
 					{
-						portIndex = this.ComBoxComm.SelectedIndex;
+						portIndex = this.mCCommComBox.SelectedIndex;
 					}
 				}
 
@@ -216,31 +216,31 @@ namespace Harry.LabTools.LabComm
 
 				}
 
-				if (this.ComBoxComm != null)
+				if (this.mCCommComBox != null)
 				{
 					//---异步调用
-					if (this.ComBoxComm.InvokeRequired)
+					if (this.mCCommComBox.InvokeRequired)
 					{
-						this.ComBoxComm.BeginInvoke((EventHandler)
+						this.mCCommComBox.BeginInvoke((EventHandler)
 								 //cbb.Invoke((EventHandler)
 								 (delegate
 								 {
-									 this.ComBoxComm.Items.Clear();
+									 this.mCCommComBox.Items.Clear();
 									 for (i = 0; i < this.defaSerialIndexMemu.Count; i++)
 									 {
-										 this.ComBoxComm.Items.Add("COM" + this.defaSerialIndexMemu[i].ToString());
+										 this.mCCommComBox.Items.Add("COM" + this.defaSerialIndexMemu[i].ToString());
 									 }
-									 this.ComBoxComm.SelectedIndex = portIndex;
+									 this.mCCommComBox.SelectedIndex = portIndex;
 								 }));
 					}
 					else
 					{
-						this.ComBoxComm.Items.Clear();
+						this.mCCommComBox.Items.Clear();
 						for (i = 0; i < this.defaSerialIndexMemu.Count; i++)
 						{
-							this.ComBoxComm.Items.Add("COM" + this.defaSerialIndexMemu[i].ToString());
+							this.mCCommComBox.Items.Add("COM" + this.defaSerialIndexMemu[i].ToString());
 						}
-						this.ComBoxComm.SelectedIndex = portIndex;
+						this.mCCommComBox.SelectedIndex = portIndex;
 					}
 				}
 			}
@@ -251,9 +251,9 @@ namespace Harry.LabTools.LabComm
 				this.defaultSerialInfo = this.defaultSerialInfoMemu[portIndex];
 			}
 
-            if (this.RichTextBoxComm != null)
+            if (this.mCCommRichTextBox != null)
             {
-                CRichTextBoxPlus.AppendTextInfoTopWithDataTime(this.RichTextBoxComm, this.defaultSerialMsg,(_return==0?Color.Black:Color.Red), false);
+                CRichTextBoxPlus.AppendTextInfoTopWithDataTime(this.mCCommRichTextBox, this.defaultSerialMsg,(_return==0?Color.Black:Color.Red), false);
             }
             return _return;
 		}
@@ -272,25 +272,25 @@ namespace Harry.LabTools.LabComm
 			if ((addNames == null) || (addNames.Count == 0))
 			{
 				this.defaSerialIndexMemu = new List<byte>();
-				if (this.ComBoxComm != null)
+				if (this.mCCommComBox != null)
 				{
 					//---异步调用
-					if (this.ComBoxComm.InvokeRequired)
+					if (this.mCCommComBox.InvokeRequired)
 					{
-						this.ComBoxComm.BeginInvoke((EventHandler)
+						this.mCCommComBox.BeginInvoke((EventHandler)
 								 //cbb.Invoke((EventHandler)
 								 (delegate
 								 {
-									 this.ComBoxComm.Items.Clear();
-                                     this.ComBoxComm.Text = string.Empty;
-                                     this.ComBoxComm.SelectedIndex = -1;
+									 this.mCCommComBox.Items.Clear();
+                                     this.mCCommComBox.Text = string.Empty;
+                                     this.mCCommComBox.SelectedIndex = -1;
 								 }));
 					}
 					else
 					{
-						this.ComBoxComm.Items.Clear();
-                        this.ComBoxComm.Text = string.Empty;
-                        this.ComBoxComm.SelectedIndex = -1;
+						this.mCCommComBox.Items.Clear();
+                        this.mCCommComBox.Text = string.Empty;
+                        this.mCCommComBox.SelectedIndex = -1;
 					}
 				}
                 _return = 1;
@@ -334,20 +334,20 @@ namespace Harry.LabTools.LabComm
 				List<byte> addDevice = new List<byte>();
 
 				//---获取当前使用的设备列表
-				if (this.ComBoxComm != null)
+				if (this.mCCommComBox != null)
 				{
 					//---异步调用
-					if (this.ComBoxComm.InvokeRequired)
+					if (this.mCCommComBox.InvokeRequired)
 					{
-						this.ComBoxComm.Invoke((EventHandler)
+						this.mCCommComBox.Invoke((EventHandler)
 									 (delegate
 									 {
-										 portIndex = this.ComBoxComm.SelectedIndex;
+										 portIndex = this.mCCommComBox.SelectedIndex;
 									 }));
 					}
 					else
 					{
-						portIndex = this.ComBoxComm.SelectedIndex;
+						portIndex = this.mCCommComBox.SelectedIndex;
 					}
 				}
 
@@ -384,31 +384,31 @@ namespace Harry.LabTools.LabComm
 					}
 				}
                 //---刷新设备
-                if (this.ComBoxComm != null)
+                if (this.mCCommComBox != null)
 				{
 					//---异步调用
-					if (this.ComBoxComm.InvokeRequired)
+					if (this.mCCommComBox.InvokeRequired)
 					{
-						this.ComBoxComm.BeginInvoke((EventHandler)
+						this.mCCommComBox.BeginInvoke((EventHandler)
 								 //cbb.Invoke((EventHandler)
 								 (delegate
 								 {
-									 this.ComBoxComm.Items.Clear();
+									 this.mCCommComBox.Items.Clear();
 									 for (i = 0; i < this.defaSerialIndexMemu.Count; i++)
 									 {
-										 this.ComBoxComm.Items.Add("COM" + this.defaSerialIndexMemu[i].ToString());
+										 this.mCCommComBox.Items.Add("COM" + this.defaSerialIndexMemu[i].ToString());
 									 }
-									 this.ComBoxComm.SelectedIndex = portIndex;
+									 this.mCCommComBox.SelectedIndex = portIndex;
 								 }));
 					}
 					else
 					{
-						this.ComBoxComm.Items.Clear();
+						this.mCCommComBox.Items.Clear();
 						for (i = 0; i < this.defaSerialIndexMemu.Count; i++)
 						{
-							this.ComBoxComm.Items.Add("COM" + this.defaSerialIndexMemu[i].ToString());
+							this.mCCommComBox.Items.Add("COM" + this.defaSerialIndexMemu[i].ToString());
 						}
-						this.ComBoxComm.SelectedIndex = portIndex;
+						this.mCCommComBox.SelectedIndex = portIndex;
 					}
 				}
 			}
@@ -427,9 +427,9 @@ namespace Harry.LabTools.LabComm
 					this.Name = string.Empty;
 				}
 			}
-            if (this.RichTextBoxComm != null)
+            if (this.mCCommRichTextBox != null)
             {
-                CRichTextBoxPlus.AppendTextInfoTopWithDataTime(this.RichTextBoxComm, this.defaultSerialMsg, (_return == 0 ? Color.Black : Color.Red), false);
+                CRichTextBoxPlus.AppendTextInfoTopWithDataTime(this.mCCommRichTextBox, this.defaultSerialMsg, (_return == 0 ? Color.Black : Color.Red), false);
             }
             return _return;
 		}
@@ -737,11 +737,11 @@ namespace Harry.LabTools.LabComm
 			if (_return > 0)
 			{
 				//---消息插件弹出
-				CMessageBoxPlus.Show(this.FormComm, this.defaultSerialMsg + "\r\n" + "错误号：" + _return.ToString() + "\r\n", "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CMessageBoxPlus.Show(this.mCCommForm, this.defaultSerialMsg + "\r\n" + "错误号：" + _return.ToString() + "\r\n", "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			else if (_return < 0)
 			{
-				CMessageBoxPlus.Show(this.FormComm, "端口名称不合法!\r\n", "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				CMessageBoxPlus.Show(this.mCCommForm, "端口名称不合法!\r\n", "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				_return = 5;
 			}
 			else
@@ -795,6 +795,14 @@ namespace Harry.LabTools.LabComm
 		/// <returns></returns>
 		public override int CloseDevice()
 		{
+			return this.CloseDevice(null);
+		}
+		/// <summary>
+		/// 关闭设备
+		/// </summary>
+		/// <returns></returns>
+		public override int CloseDevice(RichTextBox msg = null)
+		{
             int _return = -1;
             if ((this.defaultSerialPort!=null)&&(this.defaultSerialPort.IsOpen))
             {
@@ -827,6 +835,11 @@ namespace Harry.LabTools.LabComm
             {
                 this.defaultSerialMsg = "端口资源已释放!\r\n";
                 _return = 3;
+            }
+			//---消息显示
+            if (msg != null)
+            {
+                CRichTextBoxPlus.AppendTextInfoTopWithDataTime(msg, this.defaultSerialMsg, _return == 0 ? Color.Black : Color.Red, false);
             }
             return _return;
 		}

@@ -216,6 +216,16 @@ namespace Harry.LabTools.LabComm
 		}
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="msg"></param>
+		/// <returns></returns>
+		public virtual int CloseDevice(RichTextBox msg = null)
+		{
+			return -1;
+		}
+
+		/// <summary>
 		/// 关闭设备
 		/// </summary>
 		/// <param name="argName"></param>

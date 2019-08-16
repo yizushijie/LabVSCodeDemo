@@ -39,14 +39,26 @@ namespace Harry.LabTools.LabComm
 			}
 		}
 
-        #endregion
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual bool mCCommChanged
+		{
+			get
+			{
+				return false;
+			}
+		}
 
-        #region 构造函数
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public CCommBaseForm()
+		#endregion
+
+		#region 构造函数
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public CCommBaseForm()
         {
             InitializeComponent();
         }
@@ -68,7 +80,7 @@ namespace Harry.LabTools.LabComm
         /// </summary>
         public virtual void FreeResource()
         {
-
+			GC.SuppressFinalize(this);
         }
 
         #endregion

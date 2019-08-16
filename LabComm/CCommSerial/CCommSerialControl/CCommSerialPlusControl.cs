@@ -172,6 +172,7 @@ namespace Harry.LabTools.LabComm
         public override void FreeResource()
         {
             base.FreeResource();
+			this.Dispose();
         }
 
         #endregion

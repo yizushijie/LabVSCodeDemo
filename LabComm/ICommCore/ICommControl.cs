@@ -15,7 +15,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 通讯端口
 		/// </summary>
-		ComboBox ComBoxComm
+		ComboBox mCCommComBox
 		{
 			get;
 			set;
@@ -24,7 +24,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 消息控件
 		/// </summary>
-		RichTextBox RichTextBoxComm
+		RichTextBox mCCommRichTextBox
 		{
 			get;
 			set;
@@ -33,7 +33,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 窗体控件
 		/// </summary>
-		Form FormComm
+		Form mCCommForm
 		{
 			get;
 			set;

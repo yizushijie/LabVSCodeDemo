@@ -155,6 +155,9 @@
     <EmbeddedResource Include="CCommBase\CCommBaseForm\CCommBaseForm.resx">
       <DependentUpon>CCommBaseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CCommSerial\CCommSerialControl\CCommSerialControl.resx">
+      <DependentUpon>CCommSerialControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CCommSerial\CCommSerialControl\CCommSerialPlusControl.resx">
       <DependentUpon>CCommSerialPlusControl.cs</DependentUpon>
     </EmbeddedResource>

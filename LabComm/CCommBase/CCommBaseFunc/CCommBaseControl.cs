@@ -33,7 +33,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 端口名称使用的控件
 		/// </summary>
-		public virtual ComboBox ComBoxComm
+		public virtual ComboBox mCCommComBox
 		{
 			get
 			{
@@ -48,7 +48,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 消息控件
 		/// </summary>
-		public virtual RichTextBox RichTextBoxComm
+		public virtual RichTextBox mCCommRichTextBox
 		{
 			get
 			{
@@ -63,7 +63,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual Form FormComm
+		public virtual Form mCCommForm
 		{
 			get
 			{

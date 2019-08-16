@@ -26,7 +26,12 @@ namespace Harry.LabTools.LabControlPlus
 			{
 				return;
 			}
-			
+			//---检查消息是否为空
+			if (string.IsNullOrEmpty(text))
+			{
+				return;
+			}
+			//---检查消息是否换行
 			if (newLine)
             {
                 text += Environment.NewLine;
@@ -81,7 +86,12 @@ namespace Harry.LabTools.LabControlPlus
 			{
 				return;
 			}
-
+			//---检查消息是否为空
+			if (string.IsNullOrEmpty(text))
+			{
+				return;
+			}
+			//---检查消息是否换行
 			if (newLine)
             {
                 text += Environment.NewLine;
@@ -143,7 +153,12 @@ namespace Harry.LabTools.LabControlPlus
 			{
 				return;
 			}
-
+			//---检查消息是否为空
+			if (string.IsNullOrEmpty(text))
+			{
+				return;
+			}
+			//---检查消息是否换行
 			if (newLine)
             {
                 text += Environment.NewLine;
@@ -210,14 +225,20 @@ namespace Harry.LabTools.LabControlPlus
         /// <param name="newLine"></param>
         public static void AppendTextInfoWithDataTime(RichTextBox rtBox, string text, Color textColor, bool newLine = true)
         {
-            string str = string.Format("{0} {1} {2}", System.DateTime.Now.ToString(), "：", text);
+			//---检查消息是否为空
+			if (string.IsNullOrEmpty(text))
+			{
+				return;
+			}
+			
+			string str = string.Format("{0} {1} {2}", System.DateTime.Now.ToString(), "：", text);
 
 			//---检查对象控件
 			if (rtBox == null)
 			{
 				return;
 			}
-
+			//---检查消息是否换行
 			if (newLine)
             {
                 str += Environment.NewLine;
@@ -274,13 +295,16 @@ namespace Harry.LabTools.LabControlPlus
         /// <param name="newLine"></param>
         public static void AppendTextInfoWithoutDataTime(RichTextBox rtBox, string text, Color textColor, bool newLine = true)
         {
-
 			//---检查对象控件
 			if (rtBox == null)
 			{
 				return;
 			}
-
+			//---检查消息是否为空
+			if (string.IsNullOrEmpty(text))
+			{
+				return;
+			}
 			if (newLine)
             {
                 text += Environment.NewLine;
@@ -345,8 +369,12 @@ namespace Harry.LabTools.LabControlPlus
 			{
 				return;
 			}
-
-            if (rtBox.InvokeRequired)
+			//---检查消息是否为空
+			if (string.IsNullOrEmpty(text))
+			{
+				return;
+			}
+			if (rtBox.InvokeRequired)
             {
 				rtBox.BeginInvoke((EventHandler)
 						 //rtBox.Invoke((EventHandler)
@@ -395,7 +423,11 @@ namespace Harry.LabTools.LabControlPlus
 			{
 				return;
 			}
-
+			//---检查消息是否为空
+			if (string.IsNullOrEmpty(text))
+			{
+				return;
+			}
 			//---异步调用
 			if (rtBox.InvokeRequired)
             {

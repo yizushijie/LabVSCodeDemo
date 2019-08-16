@@ -100,6 +100,12 @@ namespace Harry.LabTools.LabComm
 				//---USB插入监视
 				if (insertHandler != null)
 				{
+					//---检查设备插入事件
+					if (this.defaultInsertWatcher != null)
+					{
+						this.defaultInsertWatcher.Stop();
+						this.defaultInsertWatcher = null;
+					}
 					WqlEventQuery insertQuery = new WqlEventQuery("__InstanceCreationEvent", interval, "TargetInstance isa 'Win32_USBControllerDevice'");
 					this.defaultInsertWatcher = new ManagementEventWatcher(Scope, insertQuery);
 					this.defaultInsertWatcher.EventArrived += insertHandler;
@@ -110,6 +116,12 @@ namespace Harry.LabTools.LabComm
 				//---USB拔出监视
 				if (removeHandler != null)
 				{
+					//---检查设备移除事件
+					if (this.defaultRemoveWatcher != null)
+					{
+						this.defaultRemoveWatcher.Stop();
+						this.defaultRemoveWatcher = null;
+					}
 					WqlEventQuery removeQuery = new WqlEventQuery("__InstanceDeletionEvent", interval, "TargetInstance isa 'Win32_USBControllerDevice'");
                     this.defaultRemoveWatcher = new ManagementEventWatcher(Scope, removeQuery);
 					this.defaultRemoveWatcher.EventArrived += removeHandler;

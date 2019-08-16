@@ -104,7 +104,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 消息信息
 		/// </summary>
-		public virtual string Message
+		public virtual string LogMessage
 		{
 			get
 			{
@@ -145,6 +145,20 @@ namespace Harry.LabTools.LabComm
             }
         }
 
+		/// <summary>
+		/// 设备是否发生变化,TRUE---发生变化，FALSE---未变化
+		/// </summary>
+		public virtual bool IsChanged
+		{
+			get
+			{
+				return false;
+			}
+			set
+			{
+
+			}
+		}
         #endregion
 
         #region 串口属性

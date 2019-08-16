@@ -438,6 +438,21 @@ namespace Harry.LabTools.LabComm
 			}
 			//---从到大小排列数据
 			_return.AddRange((temp.ToArray().OrderBy(x => x).ToArray()));
+			//---设置设备没有发生变化
+			this.defaultChanged = false;
+			//---检查是否发生设备变化
+			if (this.defaSerialIndexMemu.Count == 0)
+			{
+				this.defaultChanged = true;
+			}
+			else if (this.defaSerialIndexMemu.Count > 0)
+			{
+				//---判断连个数组是否相等
+				if (Enumerable.SequenceEqual(_return.ToArray(), this.defaSerialIndexMemu.ToArray())!=true)
+				{
+					this.defaultChanged = true;
+				}
+			}
 			//---返回测试结果
 			return _return;
 		}

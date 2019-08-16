@@ -28,28 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.cCommSerialPort = new Harry.LabTools.LabComm.CCommSerialPlusControl();
+			this.cCommSerial = new Harry.LabTools.LabComm.CCommSerialPlusControl();
 			this.SuspendLayout();
 			// 
-			// cCommSerialPort
+			// cCommSerial
 			// 
-			this.cCommSerialPort.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.cCommSerialPort.Location = new System.Drawing.Point(0, 0);
-			this.cCommSerialPort.MaximumSize = new System.Drawing.Size(151, 189);
-			this.cCommSerialPort.mCCOMM = null;
-			this.cCommSerialPort.MinimumSize = new System.Drawing.Size(151, 189);
-			this.cCommSerialPort.mIsShowCommParam = true;
-			this.cCommSerialPort.Name = "cCommSerialPort";
-			this.cCommSerialPort.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-			this.cCommSerialPort.Size = new System.Drawing.Size(151, 189);
-			this.cCommSerialPort.TabIndex = 0;
+			this.cCommSerial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.cCommSerial.Location = new System.Drawing.Point(4, 4);
+			this.cCommSerial.Margin = new System.Windows.Forms.Padding(0);
+			this.cCommSerial.MaximumSize = new System.Drawing.Size(151, 189);
+			this.cCommSerial.mCCOMM = null;
+			this.cCommSerial.MinimumSize = new System.Drawing.Size(151, 189);
+			this.cCommSerial.mIsShowCommParam = true;
+			this.cCommSerial.Name = "cCommSerial";
+			this.cCommSerial.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+			this.cCommSerial.Size = new System.Drawing.Size(151, 189);
+			this.cCommSerial.TabIndex = 1;
 			// 
 			// CCommSerialPlusForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(156, 194);
-			this.Controls.Add(this.cCommSerialPort);
+			this.ClientSize = new System.Drawing.Size(159, 197);
+			this.Controls.Add(this.cCommSerial);
 			this.DoubleBuffered = true;
 			this.Name = "CCommSerialPlusForm";
 			this.Text = "CCommSerialPlusForm";
@@ -57,8 +60,8 @@
 
         }
 
-        #endregion
+		#endregion
 
-        private CCommSerialPlusControl cCommSerialPort;
-    }
+		private CCommSerialPlusControl cCommSerial;
+	}
 }
