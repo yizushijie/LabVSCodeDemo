@@ -205,6 +205,7 @@ namespace Harry.LabTools.LabComm
                         this.button_COMM.Text = "关闭设备";
                         this.pictureBox_COMM.Image= Properties.Resources.open;
                         this.defaultCCOMM.EventCCommChange += this.EventDeviceChanged;
+						this.defaultIsShowCommParam = false;
                     }
                 }
             }
@@ -224,7 +225,8 @@ namespace Harry.LabTools.LabComm
                         this.button_COMM.Text = "打开设备";
                         this.pictureBox_COMM.Image = Properties.Resources.lost;
                         this.defaultCCOMM.EventCCommChange -= this.EventDeviceChanged;
-                    }
+						this.defaultIsShowCommParam = true;
+					}
                 }
             }
         }
@@ -266,7 +268,8 @@ namespace Harry.LabTools.LabComm
                                              this.defaultCCOMM.Dispose();
                                              this.button_COMM.Text = "打开设备";
                                              this.pictureBox_COMM.Image = Properties.Resources.lost;
-                                         }
+											 this.defaultIsShowCommParam = true;
+										 }
                                      }
                                  }));
                 }
@@ -281,7 +284,8 @@ namespace Harry.LabTools.LabComm
                             this.defaultCCOMM.Dispose();
                             this.button_COMM.Text = "打开设备";
                             this.pictureBox_COMM.Image = Properties.Resources.lost;
-                        }
+							this.defaultIsShowCommParam = true;
+						}
                     }
                 }
             }
@@ -374,7 +378,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 配置通信端口的参数
 		/// </summary>
-		private void ConfigCOMMSerialPortParam()
+		private void ConfigCCOMMParam()
 		{
 			if ((this.comboBox_COMM.Text != null) && (this.comboBox_COMM.Items.Count > 0))
 			{
@@ -382,17 +386,20 @@ namespace Harry.LabTools.LabComm
 				//---检查对象类型
 				if (this.defaultCCOMM.GetType()==typeof(CCommSerial))
 				{
-					p=new CCommSerialPlusForm(this.comboBox_COMM,this.defaultCCOMM,"配置设备" ,true );
+					//---串行通讯对象的参数
+					p=new CCommSerialPlusForm(this.comboBox_COMM,this.defaultCCOMM, this.defaultCCOMM.mCCommRichTextBox, "配置设备" ,true );
 				}
 				else if(this.defaultCCOMM.GetType()==typeof(CCommSerial))
 				{
+					//---USB通讯对象的参数
 					p=new CCommUSBPlusForm(); 
 				}
 				//---判断对象是否可用
 				if (p!=null)
 				{
-					if (p.ShowDialog(this.comboBox_COMM, 0, this.comboBox_COMM.Height) == System.Windows.Forms.DialogResult.OK)
+					if (p.ShowDialog(this.comboBox_COMM, 0, this.comboBox_COMM.Height+4) == System.Windows.Forms.DialogResult.OK)
 					{
+						//---解析参数
 						this.defaultCCOMM.AnalyseParam(p.mCCommSrialParam, p.mCCommUSBParam);
 						//---检查端口是否发生变化
 						if (p.mCCommChanged == true)
@@ -504,10 +511,11 @@ namespace Harry.LabTools.LabComm
 					//---判断鼠标按下的按键
 					if ((e.Button == MouseButtons.Right) && (this.defaultIsShowCommParam == true))
 					{
-						if (LabGenFunc.CGenFuncBitMap.GenFuncCompareBitMap((Bitmap)this.pictureBox_COMM.Image, Properties.Resources.open)!=true)
+						//---通过图片校验端口的状态
+						//if (LabGenFunc.CGenFuncBitMap.GenFuncCompareBitMap((Bitmap)this.pictureBox_COMM.Image, Properties.Resources.open)!=true)
 						{
 							//---鼠标右键配置通信端口的参数
-							this.ConfigCOMMSerialPortParam();
+							this.ConfigCCOMMParam();
 							//---判断是否端口发生了变化
 							if (((this.comboBox_COMM.Text != string.Empty) || this.comboBox_COMM.Text != "") && ((this.defaultCCOMM.Name != string.Empty) || (this.defaultCCOMM.Name != "")) && (this.defaultCCOMM.Name != this.comboBox_COMM.Text))
 							{

@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabGenForm", "LabGenForm\La
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabFuncForm", "LabFuncForm\LabFuncForm.csproj", "{610B4C23-6066-4E77-A49B-F1E97072AC5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabToVisualStudio", "LabToVisualStudio\LabToVisualStudio.csproj", "{80362684-4FF9-4A5D-815E-DE9AA8C7BF57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{610B4C23-6066-4E77-A49B-F1E97072AC5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{610B4C23-6066-4E77-A49B-F1E97072AC5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{610B4C23-6066-4E77-A49B-F1E97072AC5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80362684-4FF9-4A5D-815E-DE9AA8C7BF57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80362684-4FF9-4A5D-815E-DE9AA8C7BF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80362684-4FF9-4A5D-815E-DE9AA8C7BF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80362684-4FF9-4A5D-815E-DE9AA8C7BF57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -65,6 +65,8 @@ namespace Harry.LabTools.LabComm
 					//---获取设备的名称信息
 					this.Name = "COM" + this.defaSerialIndexMemu[0].ToString();
 				}
+				this.defaultSerialMsg = "端口刷新成功！\r\n";
+				_return = 0;
 			}
 			else
 			{
@@ -87,15 +89,21 @@ namespace Harry.LabTools.LabComm
 						cbb.SelectedIndex = -1;
 					}
 				}
+				this.defaultSerialMsg = "端口刷新失败！\r\n";
 			}
 
 
           	this.mCCommComBox = cbb;
             this.mCCommRichTextBox = msg;
-
             //---添加端口监控函数
             this.AddWatcherCommEvent();
-            return _return;
+
+			if (msg != null)
+			{
+				CRichTextBoxPlus.AppendTextInfoTopWithDataTime(msg, this.defaultSerialMsg, (_return == 0 ? Color.Black : Color.Red), false);
+			}
+
+			return _return;
 		}
 
 		/// <summary>

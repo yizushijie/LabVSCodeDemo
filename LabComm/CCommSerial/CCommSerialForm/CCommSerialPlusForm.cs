@@ -115,6 +115,25 @@ namespace Harry.LabTools.LabComm
 			this.Init(cbb, cComm);
 		}
 
+		public CCommSerialPlusForm(ComboBox cbb, CCommBase cComm,RichTextBox msg=null, string text = null, bool isLimitedSize = false)
+		{
+			InitializeComponent();
+
+			if ((text != "") && (text != string.Empty))
+			{
+				this.cCommSerial.mButton.Text = text;
+			}
+
+			//---判断是否限定最小尺寸
+			if (isLimitedSize)
+			{
+				//---限制窗体的大小
+				this.MinimumSize = this.Size;
+				this.MaximumSize = this.Size;
+			}
+			this.Init(cbb, cComm);
+		}
+
 		#endregion
 
 		#region 析构函数
@@ -165,7 +184,7 @@ namespace Harry.LabTools.LabComm
 				this.cCommSerial.RemoveButtonClick();
 
 				//---加载按钮事件
-				this.cCommSerial.mButton.Click+=new EventHandler(this.ShowParamDialog_Click);
+				this.cCommSerial.mButton.Click+=new EventHandler(this.ParamShowDialog_Click);
 			}
 			else
 			{
@@ -190,7 +209,7 @@ namespace Harry.LabTools.LabComm
 				this.cCommSerial.mCCOMM=cComm;
 
 				//---加载按钮事件
-				this.cCommSerial.mButton.Click+=new EventHandler(this.ShowParamDialog_Click);		
+				this.cCommSerial.mButton.Click+=new EventHandler(this.ParamShowDialog_Click);		
 				//---波特率
 				this.cCommSerial.AnalyseBaudRate(cComm.mSerialParam.mBaudRate);
 				//---数据位
@@ -205,17 +224,52 @@ namespace Harry.LabTools.LabComm
 				this.DialogResult = DialogResult.None;
 			}
 		}
-	
-        #endregion
 
-        #region 事件函数
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="cbb"></param>
+		/// <param name="cComm"></param>
+		/// <param name="msg"></param>
+		private void Init(ComboBox cbb, CCommBase cComm, RichTextBox msg = null)
+		{
+			if (cComm != null)
+			{
+				this.cCommSerial.RemoveComboBoxMouseDownClick();
+				this.cCommSerial.RemoveButtonClick();
+				this.cCommSerial.RefreshCOMM(cbb);
 
-        /// <summary>
-        /// 按键点击事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public override void ShowParamDialog_Click(object sender, System.EventArgs e)
+				//---传递端口类型
+				this.cCommSerial.mCCOMM = cComm;
+				this.cCommSerial.mCCommRichTextBox = msg;
+
+				//---加载按钮事件
+				this.cCommSerial.mButton.Click += new EventHandler(this.ParamShowDialog_Click);
+				//---波特率
+				this.cCommSerial.AnalyseBaudRate(cComm.mSerialParam.mBaudRate);
+				//---数据位
+				this.cCommSerial.AnalyseDataBits(cComm.mSerialParam.mDataBits);
+				//---停止位
+				this.cCommSerial.AnalyseStopBits(cComm.mSerialParam.mStopBits);
+				//---校验位
+				this.cCommSerial.AnalyseParity(cComm.mSerialParam.mParity);
+			}
+			else
+			{
+				this.DialogResult = DialogResult.None;
+			}
+		}
+
+		#endregion
+
+		#region 事件函数
+
+		/// <summary>
+		/// 按键点击事件
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		public override void ParamShowDialog_Click(object sender, System.EventArgs e)
         {
             //---返回操作完成状态
             this.DialogResult = System.Windows.Forms.DialogResult.OK;

@@ -28,12 +28,35 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
+			this.cCommUSB = new Harry.LabTools.LabComm.CCommUSBPlusControl();
+			this.SuspendLayout();
+			// 
+			// cCommUSB
+			// 
+			this.cCommUSB.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.cCommUSB.Location = new System.Drawing.Point(0, 0);
+			this.cCommUSB.mCCOMM = null;
+			this.cCommUSB.mCCommRichTextBox = null;
+			this.cCommUSB.mIsShowCommParam = true;
+			this.cCommUSB.Name = "cCommUSB";
+			this.cCommUSB.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+			this.cCommUSB.Size = new System.Drawing.Size(151, 132);
+			this.cCommUSB.TabIndex = 0;
+			// 
+			// CCommUSBPlusForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(151, 132);
+			this.Controls.Add(this.cCommUSB);
+			this.Name = "CCommUSBPlusForm";
 			this.Text = "CCommUSBPlusForm";
+			this.ResumeLayout(false);
+
 		}
 
 		#endregion
+
+		private CCommUSBPlusControl cCommUSB;
 	}
 }

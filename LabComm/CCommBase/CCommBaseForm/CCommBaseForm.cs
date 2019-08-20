@@ -103,7 +103,7 @@ namespace Harry.LabTools.LabComm
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual void ShowParamDialog_Click(object sender, System.EventArgs e)
+		public virtual void ParamShowDialog_Click(object sender, System.EventArgs e)
         {
             //---返回操作完成状态
             this.DialogResult = System.Windows.Forms.DialogResult.None;
