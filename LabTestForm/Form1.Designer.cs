@@ -31,48 +31,51 @@ namespace LabTestForm
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.components = new System.ComponentModel.Container();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.cRichTextBoxEx1 = new Harry.LabTools.LabControlPlus.CRichTextBoxEx();
-            this.cCommBaseControl1 = new Harry.LabTools.LabComm.CCommBaseControl();
-            this.SuspendLayout();
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(72, 356);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 0;
-            // 
-            // cRichTextBoxEx1
-            // 
-            this.cRichTextBoxEx1.Location = new System.Drawing.Point(371, 70);
-            this.cRichTextBoxEx1.Name = "cRichTextBoxEx1";
-            this.cRichTextBoxEx1.Size = new System.Drawing.Size(305, 293);
-            this.cRichTextBoxEx1.TabIndex = 1;
-            this.cRichTextBoxEx1.Text = "";
-            // 
-            // cCommBaseControl1
-            // 
-            this.cCommBaseControl1.Location = new System.Drawing.Point(12, 12);
-            this.cCommBaseControl1.Name = "cCommBaseControl1";
-            this.cCommBaseControl1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.cCommBaseControl1.Size = new System.Drawing.Size(262, 56);
-            this.cCommBaseControl1.TabIndex = 2;
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cCommBaseControl1);
-            this.Controls.Add(this.cRichTextBoxEx1);
-            this.Controls.Add(this.comboBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.ResumeLayout(false);
+			this.components = new System.ComponentModel.Container();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.cRichTextBoxEx1 = new Harry.LabTools.LabControlPlus.CRichTextBoxEx();
+			this.cCommBaseControl1 = new Harry.LabTools.LabComm.CCommBaseControl();
+			this.SuspendLayout();
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(72, 356);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(121, 20);
+			this.comboBox1.TabIndex = 0;
+			// 
+			// cRichTextBoxEx1
+			// 
+			this.cRichTextBoxEx1.Location = new System.Drawing.Point(302, 12);
+			this.cRichTextBoxEx1.Name = "cRichTextBoxEx1";
+			this.cRichTextBoxEx1.Size = new System.Drawing.Size(305, 293);
+			this.cRichTextBoxEx1.TabIndex = 1;
+			this.cRichTextBoxEx1.Text = "";
+			// 
+			// cCommBaseControl1
+			// 
+			this.cCommBaseControl1.Location = new System.Drawing.Point(12, 12);
+			this.cCommBaseControl1.mCCOMM = null;
+			this.cCommBaseControl1.mCCommRichTextBox = null;
+			this.cCommBaseControl1.mIsShowCommParam = true;
+			this.cCommBaseControl1.Name = "cCommBaseControl1";
+			this.cCommBaseControl1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+			this.cCommBaseControl1.Size = new System.Drawing.Size(262, 56);
+			this.cCommBaseControl1.TabIndex = 2;
+			// 
+			// Form1
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(1038, 696);
+			this.Controls.Add(this.cCommBaseControl1);
+			this.Controls.Add(this.cRichTextBoxEx1);
+			this.Controls.Add(this.comboBox1);
+			this.Name = "Form1";
+			this.Text = "Form1";
+			this.Load += new System.EventHandler(this.Form1_Load);
+			this.ResumeLayout(false);
 
 		}
 
@@ -81,6 +84,6 @@ namespace LabTestForm
 		private System.Windows.Forms.ComboBox comboBox1;
         private Harry.LabTools.LabControlPlus.CRichTextBoxEx cRichTextBoxEx1;
         private Harry.LabTools.LabComm.CCommBaseControl cCommBaseControl1;
-    }
+	}
 }
 

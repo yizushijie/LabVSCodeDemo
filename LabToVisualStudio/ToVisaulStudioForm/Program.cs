@@ -16,12 +16,17 @@ namespace Harry.LabTools.LabToVisualStudio
 			Application.SetCompatibleTextRenderingDefault(false);
 			if (arg.Count()>0)
 			{
-                string str = null;
-                for (int i = 0; i < arg.Length; i++)
-                {
-                    str += arg[i].ToString();
-                }
-                //MessageBox.Show(str);
+				string str = null;
+				for (int i = 0; i < arg.Length; i++)
+				{
+					str += arg[i].ToString();
+					//---路劲由于空格进行了分组，这里是将空格补上
+					if ((i!=(arg.Length-1)))
+					{
+						str += " ";
+					}
+				}
+				MessageBox.Show(str);
                 Application.Run(new ToVisualStudioForm(str));
 			}
 			else

@@ -123,6 +123,9 @@ namespace Harry.LabTools.LabToVisualStudio
 			{
 				//CMessageBoxPlus.Show(this, "不支持的软件版本","提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+			//---限制窗体的大小
+			this.MinimumSize = this.Size;
+			this.MaximumSize = this.Size;
 
 		}
 
