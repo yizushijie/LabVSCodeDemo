@@ -14,6 +14,7 @@ namespace Harry.LabTools.LabToVisualStudio
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+			//---判断路劲的长度
 			if (arg.Count()>0)
 			{
 				string str = null;
@@ -26,7 +27,7 @@ namespace Harry.LabTools.LabToVisualStudio
 						str += " ";
 					}
 				}
-				MessageBox.Show(str);
+				//MessageBox.Show(str);
                 Application.Run(new ToVisualStudioForm(str));
 			}
 			else

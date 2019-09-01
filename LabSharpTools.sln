@@ -73,6 +73,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ZedGraph", "ZedGraph", "{42
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZedGraph", "..\ZedGraph\ZedGraph.csproj", "{B99650EE-AF46-47B4-A4A9-212ADE7809B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabHexEdit", "LabHexEdit\LabHexEdit.csproj", "{72D5A1AE-5BD4-4DC1-AF94-D760DB573C10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -321,6 +323,14 @@ Global
 		{B99650EE-AF46-47B4-A4A9-212ADE7809B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B99650EE-AF46-47B4-A4A9-212ADE7809B7}.Release|x86.ActiveCfg = Release|Any CPU
 		{B99650EE-AF46-47B4-A4A9-212ADE7809B7}.Release|x86.Build.0 = Release|Any CPU
+		{72D5A1AE-5BD4-4DC1-AF94-D760DB573C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72D5A1AE-5BD4-4DC1-AF94-D760DB573C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72D5A1AE-5BD4-4DC1-AF94-D760DB573C10}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{72D5A1AE-5BD4-4DC1-AF94-D760DB573C10}.Debug|x86.Build.0 = Debug|Any CPU
+		{72D5A1AE-5BD4-4DC1-AF94-D760DB573C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72D5A1AE-5BD4-4DC1-AF94-D760DB573C10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72D5A1AE-5BD4-4DC1-AF94-D760DB573C10}.Release|x86.ActiveCfg = Release|Any CPU
+		{72D5A1AE-5BD4-4DC1-AF94-D760DB573C10}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -595,7 +595,8 @@ namespace Harry.LabTools.LabComm
 
 		#endregion
 
-		#region 函数定义
+		#region 静态公共函数
+
 		/// <summary>
 		/// 获取CPU序列号
 		/// </summary>
